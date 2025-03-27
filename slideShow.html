@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slide show</title>
+</head>
+<body>
+   
+
+    <div id="imgContainer">
+
+    <br>
+    <button  onclick="next()">next</button>
+    <button  onclick="previous()">previous</button>
+    <button  onclick="slideShowStart()">slide show</button>
+    <button  onclick="stopSlide()">stop</button>
+
+    <br><br><br>
+    <img src="images/2.jpg" alt="" id="displayImg">
+       
+    </div>
+
+    <script>
+    var images = ["images/1.jpg" ,"images/2.jpg" ,"images/3.jpg","images/4.jpg","images/5.jpg","images/6.jpg" ];
+    var currentIndex = 0 ;
+    var slideShowInterval ;
+
+    var galleryImg = document.getElementById("displayImg"); 
+    
+    function updateImg(){
+        galleryImg.src = images[currentIndex];
+    }
+
+    function next(){
+
+        if(currentIndex < images.length -1){
+            currentIndex++;
+            updateImg();
+        }
+    }
+
+    function previous(){
+
+if(currentIndex < images.length -1){
+    currentIndex--;
+    updateImg();
+}
+}
+
+function slideShowStart(){
+    slideShowInterval  = setInterval(function(){
+        currentIndex += 1;
+        if(currentIndex == images.length){
+            currentIndex = 0 ;
+        }
+        updateImg();
+    },500)
+}
+
+function stopSlide(){
+    clearInterval(slideShowInterval);
+}
+
+
+    </script>
+</body>
+</html>
